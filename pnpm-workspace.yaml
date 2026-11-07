@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+
+# pnpm 11 blocks installs with ignored build scripts. Approved via
+# `pnpm approve-builds secp256k1` (wallet-selector dependency).
+allowBuilds:
+  secp256k1: true

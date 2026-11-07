@@ -1,0 +1,1 @@
+subtract() adds instead of subtracting. It returns a + b, so subtract(7, 3) is 10, not 4.

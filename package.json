@@ -1,0 +1,17 @@
+{
+  "name": "bonded",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev:web": "pnpm --dir apps/web dev",
+    "dev:api": "cargo run --manifest-path services/api/Cargo.toml",
+    "build:web": "pnpm --dir apps/web build",
+    "test:contract": "cargo test --manifest-path contracts/bonded/Cargo.toml --features unit-testing",
+    "test:api": "cargo test --manifest-path services/api/Cargo.toml"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "secp256k1"
+    ]
+  }
+}

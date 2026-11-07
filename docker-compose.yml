@@ -1,0 +1,41 @@
+# Bonded — local production stack.
+#   docker compose up --build
+# Then open http://localhost:3000
+#
+# The API holds demo role keys (scoped agent keys + evaluator/buyer keys) and
+# is unauthenticated BY DESIGN for the hackathon demo. Do not expose it
+# publicly without adding auth. See README "Deployment".
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      # Next.js browser rewrites /api -> API. For remote deployments set this
+      # to the public API URL (e.g. https://bonded-api.fly.dev).
+      - API_URL=${API_URL:-http://api:8787}
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    ports:
+      - "8787:8787"
+    environment:
+      - PORT=8787
+    env_file:
+      - .env
+    volumes:
+      - bonded-data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:8787/api/health || wget -qO- http://127.0.0.1:8787/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bonded-data:

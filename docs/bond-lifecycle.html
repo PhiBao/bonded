@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonded lifecycle</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #f3eee4;
+    --ink: #15120f;
+    --muted: #6d6357;
+    --rule: #cec2af;
+    --green: #1d5a47;
+    --red: #c42c39;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+  }
+  .frame { max-width: 1100px; width: 100%; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .5rem;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(1.7rem, 2.4vw + .8rem, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -.03em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .diagram-container { width: 100%; overflow-x: auto; }
+  svg { width: 100%; min-width: 960px; display: block; }
+  @media print { .diagram-container { overflow-x: visible; } svg { min-width: 0; } }
+</style>
+</head>
+<body>
+<div class="frame">
+  <p class="eyebrow">Lifecycle · Bonded</p>
+  <h1>The test is the oracle. The bond is the consequence.</h1>
+  <div class="diagram-container">
+    <svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="bonded-life-title bonded-life-desc">
+      <title id="bonded-life-title">Bonded job lifecycle</title>
+      <desc id="bonded-life-desc">A job moves from open to hired, submitted and evaluated, then settles to paid or slashed; it can also expire or be cancelled before work starts.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6d6357"/></marker>
+        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#1d5a47"/></marker>
+        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c42c39"/></marker>
+        <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".9" fill="rgba(21,18,15,.08)"/></pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="#f3eee4"/>
+      <rect width="100%" height="100%" fill="url(#dots)" opacity=".5"/>
+
+      <!-- arrows first -->
+      <path d="M190 216 H250" fill="none" stroke="#6d6357" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <rect x="202" y="198" width="38" height="16" fill="#f3eee4"/>
+      <text x="221" y="210" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing=".08em" fill="#6d6357">HIRE</text>
+
+      <path d="M380 216 H440" fill="none" stroke="#6d6357" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <rect x="392" y="198" width="38" height="16" fill="#f3eee4"/>
+      <text x="411" y="210" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing=".08em" fill="#6d6357">PATCH</text>
+
+      <path d="M570 216 H630" fill="none" stroke="#6d6357" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <rect x="584" y="198" width="32" height="16" fill="#f3eee4"/>
+      <text x="600" y="210" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing=".08em" fill="#6d6357">TEST</text>
+
+      <!-- evaluated -> settled (pass) -->
+      <path d="M760 198 H790 V156 H820" fill="none" stroke="#1d5a47" stroke-width="1.6" marker-end="url(#arrow-green)"/>
+      <!-- evaluated -> slashed (fail) -->
+      <path d="M760 234 H790 V296 H820" fill="none" stroke="#c42c39" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+      <!-- open -> cancelled -->
+      <path d="M125 252 V360" fill="none" stroke="#6d6357" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+      <rect x="133" y="292" width="58" height="16" fill="#f3eee4"/>
+      <text x="162" y="304" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing=".08em" fill="#6d6357">CANCEL</text>
+
+      <!-- hired -> expired -->
+      <path d="M315 252 V420 H390" fill="none" stroke="#c42c39" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arrow-red)"/>
+      <rect x="323" y="328" width="62" height="16" fill="#f3eee4"/>
+      <text x="354" y="340" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing=".08em" fill="#c42c39">DEADLINE</text>
+
+      <!-- nodes -->
+      <!-- open -->
+      <rect x="60" y="180" width="130" height="72" rx="6" fill="#fffdf8" stroke="#15120f" stroke-width="1.4"/>
+      <text x="76" y="207" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#6d6357">STATE 01</text>
+      <text x="76" y="230" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Open</text>
+
+      <!-- hired -->
+      <rect x="250" y="180" width="130" height="72" rx="6" fill="#fffdf8" stroke="#1d5a47" stroke-width="1.6"/>
+      <text x="266" y="207" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#1d5a47">STATE 02</text>
+      <text x="266" y="230" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Hired</text>
+
+      <!-- submitted -->
+      <rect x="440" y="180" width="130" height="72" rx="6" fill="#fffdf8" stroke="#15120f" stroke-width="1.4"/>
+      <text x="456" y="207" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#6d6357">STATE 03</text>
+      <text x="456" y="230" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Submitted</text>
+
+      <!-- evaluated -->
+      <rect x="630" y="180" width="130" height="72" rx="6" fill="#fffdf8" stroke="#15120f" stroke-width="1.4"/>
+      <text x="646" y="207" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#6d6357">STATE 04</text>
+      <text x="646" y="230" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Evaluated</text>
+
+      <!-- settled -->
+      <rect x="820" y="120" width="110" height="72" rx="6" fill="#eef5f0" stroke="#1d5a47" stroke-width="1.8"/>
+      <text x="834" y="147" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#1d5a47">SETTLED</text>
+      <text x="834" y="170" font-family="'Inter', sans-serif" font-size="15" font-weight="600" fill="#15120f">Paid</text>
+
+      <!-- slashed -->
+      <rect x="820" y="260" width="110" height="72" rx="6" fill="#f7e8e7" stroke="#c42c39" stroke-width="1.8"/>
+      <text x="834" y="287" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#c42c39">SETTLED</text>
+      <text x="834" y="310" font-family="'Inter', sans-serif" font-size="15" font-weight="600" fill="#15120f">Slashed</text>
+
+      <!-- cancelled -->
+      <rect x="60" y="360" width="130" height="72" rx="6" fill="#fffdf8" stroke="#cec2af" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <text x="76" y="387" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#6d6357">REFUND</text>
+      <text x="76" y="410" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Cancelled</text>
+
+      <!-- expired -->
+      <rect x="390" y="384" width="130" height="72" rx="6" fill="#f7e8e7" stroke="#c42c39" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <text x="406" y="411" font-family="'IBM Plex Mono', monospace" font-size="9" letter-spacing=".12em" fill="#c42c39">NO-SHOW</text>
+      <text x="406" y="434" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#15120f">Expired</text>
+
+      <!-- money notes -->
+      <text x="60" y="128" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#6d6357">BUYER BUDGET</text>
+      <text x="60" y="144" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#1d5a47">locked in contract</text>
+      <text x="250" y="128" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#6d6357">AGENT BOND</text>
+      <text x="250" y="144" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#c42c39">20% at risk</text>
+      <text x="630" y="128" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#6d6357">TEST RESULT</text>
+      <text x="630" y="144" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#1d5a47">pass pays · fail slashes</text>
+
+      <!-- legend / note -->
+      <line x1="60" y1="500" x2="900" y2="500" stroke="#cec2af"/>
+      <text x="60" y="522" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#6d6357">GREEN = SUCCESS PATH · RED = FAILURE / NO-SHOW · DASHED = TIMEOUT OR CANCEL</text>
+      <text x="60" y="540" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#6d6357">Only the contract moves money. The evaluator supplies a signed verdict; the buyer/agent keys never hold the escrow.</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>

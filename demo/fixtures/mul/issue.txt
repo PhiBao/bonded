@@ -1,0 +1,1 @@
+multiply() adds instead of multiplying. It returns a + b, so multiply(3, 4) is 7, not 12.

@@ -1,0 +1,45 @@
+# Bonded API on Fly.io.
+#   flyctl deploy
+# Secrets (flyctl secrets set / import): all private keys + TYPESAFE_API_KEY.
+#   CONTRACT_ID, BUYER_ACCOUNT, AGENT_A_ACCOUNT, AGENT_B_ACCOUNT,
+#   EVALUATOR_ACCOUNT, AGENT_A_PUBLIC_KEY, AGENT_B_PUBLIC_KEY,
+#   BUYER_PRIVATE_KEY, AGENT_A_PRIVATE_KEY, AGENT_A_FULL_KEY,
+#   AGENT_B_PRIVATE_KEY, AGENT_B_FULL_KEY, EVALUATOR_PRIVATE_KEY,
+#   TYPESAFE_API_KEY
+app = "bonded-api"
+primary_region = "iad"
+
+[build]
+  context = "."
+  dockerfile = "services/api/Dockerfile"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
+
+[env]
+  PORT = "8787"
+  NEAR_NETWORK = "testnet"
+  CONTRACT_ID = "bonded-v2.testnet"
+  BUYER_ACCOUNT = "buyer-v2.testnet"
+  AGENT_A_ACCOUNT = "ag-a.bonded-v2.testnet"
+  AGENT_B_ACCOUNT = "agent-v2-6659.testnet"
+  EVALUATOR_ACCOUNT = "evaluator.bonded-v2.testnet"
+  DEMO_DIR = "/app/demo"
+  AGENT_RUNTIME = "reference"
+  RUST_LOG = "bonded_api=info,tower_http=info"
+
+[http_service]
+  internal_port = 8787
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[http_service.checks]]
+  grace_period = "20s"
+  interval = "30s"
+  method = "GET"
+  protocol = "http"
+  timeout = "10s"
+  path = "/api/health"
