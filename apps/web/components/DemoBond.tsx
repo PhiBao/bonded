@@ -115,8 +115,13 @@ export default function DemoBond() {
     setResult(null);
     setLiveSteps([]);
     try {
-      const started = await startRun(outcome);
-      const response = await pollRun(started.run_id, (run) => setLiveSteps(run.steps));
+      // Seed first so the card shows the fresh job + locked bonds immediately,
+      // then start the run. Two requests keep visuals honest and deterministic.
+      const seeded = await seedDemo();
+      setView(seeded);
+      const response = await pollRun((await startRun(outcome)).run_id, (run) =>
+        setLiveSteps(run.steps),
+      );
       setResult(response);
       setView(response.job);
       getBalances().then(setBalances).catch(() => {});

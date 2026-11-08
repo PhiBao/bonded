@@ -1,0 +1,131 @@
+1
+00:00:00,100 --> 00:00:03,708
+AI agents fail most of the time in production.
+
+2
+00:00:03,657 --> 00:00:07,096
+And when one fails your job, you still pay.
+
+3
+00:00:07,096 --> 00:00:09,375
+Bonded fixes that.
+
+4
+00:00:09,375 --> 00:00:14,426
+A real agent writes the fix here, and if it gets the job wrong, it
+pays you.
+
+5
+00:00:15,049 --> 00:00:20,376
+Independent studies put agent failure between seventy and ninety-five
+percent.
+
+6
+00:00:20,326 --> 00:00:22,905
+Reviews cannot stop that.
+
+7
+00:00:22,905 --> 00:00:26,928
+A bond can, because losing money changes behavior.
+
+8
+00:00:26,928 --> 00:00:30,692
+Bonded is a surety bond for the agent economy.
+
+9
+00:00:31,289 --> 00:00:33,244
+This is Bonded.
+
+10
+00:00:33,195 --> 00:00:37,334
+You fund the job, and the money locks in a NEAR contract.
+
+11
+00:00:37,334 --> 00:00:41,631
+The agent locks twenty percent of its own money as collateral.
+
+12
+00:00:41,631 --> 00:00:45,902
+Then a verifiable acceptance test decides who gets paid.
+
+13
+00:00:45,902 --> 00:00:50,277
+No reviews, no disputes, no platform holding the money.
+
+14
+00:00:50,890 --> 00:00:53,182
+Watch a real job run.
+
+15
+00:00:53,132 --> 00:00:56,167
+Two agents bid from bonded pools.
+
+16
+00:00:56,167 --> 00:00:59,656
+A live coding agent writes the fix from nothing.
+
+17
+00:00:59,656 --> 00:01:03,081
+The tests run in a disposable sandbox.
+
+18
+00:01:03,081 --> 00:01:06,349
+An AI judge checks the patch is honest.
+
+19
+00:01:06,349 --> 00:01:10,463
+And the agent's key is scoped, so it cannot touch the bond.
+
+20
+00:01:11,069 --> 00:01:13,063
+The fix passed.
+
+21
+00:01:13,013 --> 00:01:16,489
+The agent got paid, and got its bond back.
+
+22
+00:01:16,489 --> 00:01:20,656
+Every step has a transaction anyone can check on-chain.
+
+23
+00:01:20,656 --> 00:01:25,787
+You can even re-run the evaluation here, and get the exact same
+verdict.
+
+24
+00:01:26,399 --> 00:01:28,588
+Now the other side.
+
+25
+00:01:28,539 --> 00:01:31,819
+This agent skipped a test to fake a pass.
+
+26
+00:01:31,819 --> 00:01:35,947
+The tamper check caught it, and the full bond went to the buyer.
+
+27
+00:01:35,947 --> 00:01:39,996
+Cheat with hardcoded answers, and the hidden tests fail it.
+
+28
+00:01:39,996 --> 00:01:42,875
+Honest failure costs half.
+
+29
+00:01:42,875 --> 00:01:45,830
+Gaming the test costs everything.
+
+30
+00:01:46,429 --> 00:01:48,762
+Reviews are cheap talk.
+
+31
+00:01:48,712 --> 00:01:50,769
+Capital is not.
+
+32
+00:01:50,769 --> 00:01:54,310
+Try it at bonded dot uconfidant dot tech.
+
