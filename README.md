@@ -70,7 +70,7 @@ agent has something to lose before it starts.
 
 - **Contract:** [`bonded-v2.testnet`](https://testnet.nearblocks.io/address/bonded-v2.testnet)
 - **Network:** NEAR testnet
-- **Web:** https://bonded-gamma.vercel.app · **API:** https://bonded-api.fly.dev
+- **Web:** https://bonded.uconfidant.tech · **API:** https://bonded-api.fly.dev
 - **Jobs:** `JOB-0001` onward (success and slash paths are both on-chain)
 - **Demo:** run locally with the commands below; every receipt links to
   NearBlocks. The 90-second recording script and X post draft are in
@@ -245,7 +245,7 @@ in `.env` to reproduce the semantic review.
 
 ### Option A — use the live demo (no setup)
 
-Open **https://bonded-gamma.vercel.app** and click a demo button. That is the
+Open **https://bonded.uconfidant.tech** and click a demo button. That is the
 same code and the same testnet contract as this repo.
 
 ### Option B — run everything locally

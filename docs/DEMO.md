@@ -13,14 +13,14 @@ pnpm --dir apps/web dev
 ```
 
 Open the live demo instead (recommended — same code, same contract):
-**https://bonded-gamma.vercel.app**. Confirm the header says **LIVE BOND ·
+**https://bonded.uconfidant.tech**. Confirm the header says **LIVE BOND ·
 NEAR TESTNET** and the page shows a job.
 
 Have these tabs open:
 
 1. The Bonded landing page.
 2. `https://testnet.nearblocks.io/address/bonded-v2.testnet`.
-3. The live demo: https://bonded-gamma.vercel.app
+3. The live demo: https://bonded.uconfidant.tech
 3. The public job receipt page (the page link appears in the demo result).
 
 ## Script (90 seconds)
