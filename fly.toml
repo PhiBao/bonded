@@ -17,6 +17,13 @@ primary_region = "iad"
   size = "shared-cpu-1x"
   memory = "1gb"
 
+# SQLite (receipt events, patch artifacts) persists across restarts.
+# The chain remains the source of truth; the volume only protects
+# demo artifacts and rerun reproducibility.
+[[mounts]]
+  source = "bonded_data"
+  destination = "/app/data"
+
 [env]
   PORT = "8787"
   NEAR_NETWORK = "testnet"
@@ -29,12 +36,16 @@ primary_region = "iad"
   AGENT_RUNTIME = "reference"
   RUST_LOG = "bonded_api=info,tower_http=info"
 
+# Cost control: scale to zero when idle. The API boots in ~2s (small Rust
+# binary, no startup RPC calls); Fly wakes it on the next request. Judges
+# hitting a cold machine see a ~10-20s first response — the demo page shows
+# a live loading state meanwhile, and all demo runs take 30s+ anyway.
 [http_service]
   internal_port = 8787
   force_https = true
-  auto_stop_machines = false
+  auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 1
+  min_machines_running = 0
 
 [[http_service.checks]]
   grace_period = "20s"
